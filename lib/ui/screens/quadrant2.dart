@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class TR extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Quadrant 2"));
+    return Scaffold(body: Center(child: Text("Quadrant 2")));
   }
 
 }
