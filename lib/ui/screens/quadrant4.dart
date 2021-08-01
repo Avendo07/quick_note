@@ -9,7 +9,7 @@ class BR extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: GestureDetector(
-            onPanEnd: (details) {
+            onPanUpdate: (details) {
               route(details, routeName, context);
             },
             child: Container(

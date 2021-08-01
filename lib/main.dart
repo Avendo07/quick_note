@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:quick_note/core/local_services/Notification.dart';
 import 'package:quick_note/ui/screens/homePage.dart';
 
 void main() {
+  Notifications().initialise();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

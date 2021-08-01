@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
+import 'package:quick_note/core/local_services/Notification.dart';
 import 'package:quick_note/core/local_services/routingHome.dart';
-import 'package:quick_note/ui/screens/quadrant2.dart';
-import 'package:quick_note/ui/screens/quadrant4.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 
 class HomePage extends StatefulWidget {
   static String routeName = "/home";
@@ -20,25 +20,36 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: GestureDetector(
-
-        onPanEnd: (details) {
+        onPanUpdate: (details) {
           route(details, "/home", context);
         },
         child: Scaffold(
-          body: Container(
-            child: Center(
-              child: Column(
-                children: [
-                  Text(t),
-                  Text(t2),
-                ],
-              ),
+          body: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(t),
+                Text(t2),
+                ElevatedButton(
+                  onPressed: () async {
+                    print("Hello");
+                    final int helloAlarmID = 0;
+                    /*await AndroidAlarmManager.cancel(helloAlarmID);
+                    await AndroidAlarmManager.initialize();
+                    await AndroidAlarmManager.periodic(const Duration(seconds: 10), helloAlarmID, triggerNotification);*/
+                    triggerNotification();
+                  },
+                  child: Text("Start Process"),
+                ),
+              ],
             ),
-            height: 350,
-            width: 120,
           ),
         ),
       ),
     );
   }
+}
+
+void triggerNotification(){
+  Notifications().generateNotification("Notification", "HI How are u");
 }
